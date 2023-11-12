@@ -41,18 +41,18 @@ cd ${HOME}/projects
 git clone https://github.com/jai-python3/MSA-variants.git
 ```
 
-### Build the code:
+### Create your virtual Python environment
 
 ```shell
 cd MSA-variants
-pip uninstall msa_variants ; make clean ; python setup.py sdist
-```
-
-### Create your virtual Python environment and then install msa_variant package locally:
-
-```shell
 virtualenv -p python3 venv
 source venv/bin/activate
+```
+
+### Build the code and then install msa_variant package locally:
+
+```shell
+python setup.py sdist
 pip install .
 ```
 
