@@ -1,3 +1,18 @@
 ---
-project: msa_variants
-threshold: 10
+# The number of spaces between the sequence identifiers
+# and the SNPs/indels
+identifier_padding: 5
+
+# The following will specify the length of the substring
+# of the sequence identifiers should be written to the
+# output files.
+identifier_substring_length: 10
+
+# If the following is true, will write the following details to the header of the output files:
+# method-created
+# created-by
+# date-created
+# config_file
+# infile
+# logfile
+include_provenance: true

@@ -11,6 +11,12 @@ import click
 import yaml
 from rich.console import Console
 
+from msa_variants.extractor import Extractor
+
+
+DEFAULT_INDELS_ONLY = False
+DEFAULT_SNPS_ONLY = False
+
 DEFAULT_OUTDIR = os.path.join(
     "/tmp/",
     os.path.splitext(os.path.basename(__file__))[0],
@@ -101,6 +107,11 @@ def setup_filehandler_logger(logfile: str = None) -> None:
     type=click.Path(exists=True),
     help=f"The configuration file for this project - default is '{DEFAULT_CONFIG_FILE}'",
 )
+@click.option(
+    "--indels-only",
+    is_flag=True,
+    help=f"Will only extract indels (and not SNPs) - default is '{DEFAULT_INDELS_ONLY}'",
+)
 @click.option("--infile", help="The primary input file")
 @click.option("--logfile", help="The log file")
 @click.option(
@@ -109,16 +120,23 @@ def setup_filehandler_logger(logfile: str = None) -> None:
 )
 @click.option("--outfile", help="The output final report file")
 @click.option(
+    "--snps-only",
+    is_flag=True,
+    help=f"Will only extract SNPs (and not indels) - default is '{DEFAULT_SNPS_ONLY}'",
+)
+@click.option(
     "--verbose",
     is_flag=True,
     help=f"Will print more info to STDOUT - default is '{DEFAULT_VERBOSE}'",
 )
 def main(
     config_file: str,
+    indels_only: bool,
     infile: str,
     logfile: str,
     outdir: str,
     outfile: str,
+    snps_only: bool,
     verbose: bool,
 ):
     """Console script for msa_variants."""
@@ -130,7 +148,26 @@ def main(
         error_ctr += 1
 
     if error_ctr > 0:
-        sys.exit(1)
+        return -1
+        # sys.exit(1)
+
+    if indels_only is None:
+        indels_only = DEFAULT_INDELS_ONLY
+        console.print(
+            f"[yellow]--indels-only was not specified and therefore was set to '{indels_only}'[/]"
+        )
+
+    if snps_only is None:
+        snps_only = DEFAULT_SNPS_ONLY
+        console.print(
+            f"[yellow]--snps-only was not specified and therefore was set to '{snps_only}'[/]"
+        )
+
+    if snps_only and indels_only:
+        console.print(
+            "[red]You can only specify --indels-only or --snps-only but not both[/]"
+        )
+        return -1
 
     if config_file is None:
         config_file = DEFAULT_CONFIG_FILE
@@ -168,7 +205,17 @@ def main(
     logging.info(f"Will load contents of config file '{config_file}'")
     config = yaml.safe_load(Path(config_file).read_text())
 
-    print(f"{config=}")
+    extractor = Extractor(
+        config=config,
+        config_file=config_file,
+        outdir=outdir,
+        logfile=logfile,
+        snps_only=snps_only,
+        indels_only=indels_only,
+    )
+
+    extractor.extract(os.path.abspath(infile))
+
     print(f"The log file is '{logfile}'")
     console.print(
         f"[bold green]Execution of '{os.path.abspath(__file__)}' completed[/]"
