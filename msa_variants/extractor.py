@@ -98,6 +98,15 @@ class Extractor:
     def _write_snp_outfile(
         self, alignment, infile: str, snp_ctr: int, snp_list: List[int]
     ) -> None:
+        """Write the SNPs to the output file.
+
+        Args:
+            alignment (object): alignment object from biopython
+            infile (str): the input file
+            snp_ctr (int): the number of SNPs counted
+            snp_list (list): the positions of the encountered SNPs
+
+        """
         outfile = os.path.join(self.outdir, "snps.txt")
 
         with open(outfile, "w") as out_file_handle:
@@ -157,6 +166,15 @@ class Extractor:
     def _write_indels_outfile(
         self, alignment, infile: str, indel_ctr: int, indel_list: List[int]
     ) -> None:
+        """Write the indels to the output file.
+
+        Args:
+            alignment (object): alignment object from biopython
+            infile (str): the input file
+            indel_ctr (int): the number of indels counted
+            indel_list (list): the positions of the encountered indels
+
+        """
         outfile = os.path.join(self.outdir, "indels.txt")
 
         with open(outfile, "w") as out_file_handle:
