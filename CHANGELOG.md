@@ -1,5 +1,6 @@
 **v.0.1.0**
 
+- Updates the README.md
 - Adds Google conventional docstring to the methods
 - Adds biopython dependency to requirements.txt and setup.py
 - Adds example multiple sequence alignment file ensembl_pearson.fsa
