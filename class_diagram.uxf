@@ -1,0 +1,19 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>10</x><y>10</y><w>240</w><h>260</h></coordinates><panel_attributes>Extractor
+bg=green
+--
+- config: str
+- config_file: str
+- logfile: str
+- outdir: str
+- verbose: bool
+- indels_only: bool
+- snps_only: bool
+- identifier_padding: int
+- identifier_substring_length: int
+--
++ extract()
++ extract_snps()
++ extract_indels()
+- _write_snp_outfile()
+- _write_indels_outfile()
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

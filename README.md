@@ -2,6 +2,8 @@
 Detection of SNPs and InDels from a Multiple Sequence Alignment file in FASTA format.
 
 - [MSA-variants](#msa-variants)
+  - [Use Cases](#use-cases)
+  - [Class Diagram](#class-diagram)
   - [INDELs](#indels)
   - [SNPs](#snps)
   - [Usage:](#usage)
@@ -11,6 +13,18 @@ Detection of SNPs and InDels from a Multiple Sequence Alignment file in FASTA fo
     - [Test the code using the example multiple sequence alignment Ensembl Peason file provided:](#test-the-code-using-the-example-multiple-sequence-alignment-ensembl-peason-file-provided)
     - [To only extract SNPs:](#to-only-extract-snps)
     - [To only extract indels:](#to-only-extract-indels)
+  - [Contributing](#contributing)
+  - [To-Do/Coming Next](#to-docoming-next)
+  - [License](#license)
+
+## Use Cases
+
+![use case diagram](use_case.png)
+
+## Class Diagram
+
+![class diagram](class_diagram.png)
+
 
 ## INDELs
 
@@ -86,3 +100,17 @@ msa_variants --infile ensembl_peasron.fsa --snps-only
 msa_variants --infile ensembl_peasron.fsa --indels-only
 ```
 
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+## To-Do/Coming Next
+
+Planned improvements are listed here:<br>
+[TODO](TODO.md)
+
+## License
+
+License information is available here:<br>
+[GNU GENERAL PUBLIC LICENSE](LICENSE)
