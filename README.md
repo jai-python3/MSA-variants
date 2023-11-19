@@ -1,6 +1,17 @@
 # MSA-variants
 Detection of SNPs and InDels from a Multiple Sequence Alignment file in FASTA format.
 
+- [MSA-variants](#msa-variants)
+  - [INDELs](#indels)
+  - [SNPs](#snps)
+  - [Usage:](#usage)
+    - [Clone the code:](#clone-the-code)
+    - [Create your virtual Python environment](#create-your-virtual-python-environment)
+    - [Build the code and then install msa\_variant package locally:](#build-the-code-and-then-install-msa_variant-package-locally)
+    - [Test the code using the example multiple sequence alignment Ensembl Peason file provided:](#test-the-code-using-the-example-multiple-sequence-alignment-ensembl-peason-file-provided)
+    - [To only extract SNPs:](#to-only-extract-snps)
+    - [To only extract indels:](#to-only-extract-indels)
+
 ## INDELs
 
 Will write an `indels.txt` file that will indicate the following:
